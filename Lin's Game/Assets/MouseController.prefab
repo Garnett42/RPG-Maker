@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013213972624}
   - component: {fileID: 114000013755214090}
+  - component: {fileID: 114917158527328702}
   m_Layer: 0
   m_Name: MouseController
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011090654584}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 420.5, y: 167.06886, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -51,6 +52,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab350108941fc9d4ba7ef42d7f834163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 0}
+  line: {fileID: 1000012530723516, guid: 8b7282a80e3dfbf46824fa702c1c65ce, type: 2}
   Highlighter: {fileID: 0}
-  PanSensitivity: 0
+  PanSensitivity: 0.1
+  toggles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114917158527328702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011090654584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85313de79035981419c6f435b4cf0131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GO: {fileID: 0}
+  Spawning: 0

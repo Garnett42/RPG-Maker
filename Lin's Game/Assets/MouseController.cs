@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MouseController : MonoBehaviour {
 
@@ -20,8 +21,13 @@ public class MouseController : MonoBehaviour {
 
     GameObject GO;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    public GameObject[] toggles;
+    public bool Connecting, Moving, Deleting;
+
+
+    // Use this for initialization
+    void Start () {
         CameraPos = Camera.main.transform;
         MousePos = Input.mousePosition;
         LastPosition = Input.mousePosition;
@@ -32,10 +38,16 @@ public class MouseController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         PanScreen();
-
         MouseSelection();
-       
-        
+        MouseMode();
+
+    }
+
+    void MouseMode()
+    {
+        Deleting = toggles[0].GetComponent<Toggle>().isOn;
+        Connecting = toggles[1].GetComponent<Toggle>().isOn;
+        Moving = toggles[2].GetComponent<Toggle>().isOn;
     }
 
     void PanScreen()
@@ -62,14 +74,21 @@ public class MouseController : MonoBehaviour {
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
             if (hit)
             {
-                if (hitInfo.transform.gameObject.tag == "Drag" && !drawline)
+                if (Moving && hitInfo.transform.gameObject.tag == "Drag" && !drawline)
                 {
                     Selected = hitInfo.transform;
                 }
-                else if(hitInfo.transform.gameObject.tag == "Connector")
+                else if(Connecting && hitInfo.transform.gameObject.tag == "Connector")
                 {
                     Selected = hitInfo.transform;
                     DrawLine();
+                }
+                else if (Deleting && hitInfo.transform.gameObject.tag == "Deletable")
+                {
+                    if (hitInfo.transform.parent != null)
+                        Destroy(hitInfo.transform.parent.gameObject);
+                    else
+                        Destroy(hitInfo.transform.gameObject);
                 }
 
             }

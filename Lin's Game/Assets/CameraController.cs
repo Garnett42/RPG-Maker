@@ -4,6 +4,8 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
     public float ZoomSpeed;
+    
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,7 +18,9 @@ public class CameraController : MonoBehaviour {
 
     void zoom()
     {
-        float y = ZoomSpeed * Input.mouseScrollDelta.y;
+        if(Camera.main.orthographicSize > 5 || Input.mouseScrollDelta.y < 0) { 
+        float y = -ZoomSpeed * Input.mouseScrollDelta.y;
         Camera.main.orthographicSize = Camera.main.orthographicSize + y;
+        }
     }
 }
